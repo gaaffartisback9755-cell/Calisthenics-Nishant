@@ -1,0 +1,157 @@
+/* Gradient background */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #df1569, #f1418b, #df1569);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    user-select: none;
+    caret-color: transparent;
+    overflow-x: hidden; /* allow vertical scroll */
+}
+
+/* Video */
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 0, 128, 0.6),
+        rgba(255, 182, 193, 0.2),
+        rgba(255, 0, 128, 0.6)
+    );
+    z-index: -1;
+}
+
+/* Falling Text */
+#sorry-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+#falling-text {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 80px;
+    font-weight: 900;
+    color: #FFD700;
+    white-space: nowrap;
+    background: linear-gradient(145deg, #e4e4df, #ffffff, #000000);
+    background-clip: text;  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.4), -2px -2px 3px rgba(0,0,0,0.2);
+    pointer-events: none;
+    animation: fallOnce 5s forwards;
+}
+
+@keyframes fallOnce {
+    0%   { top: -150px; transform: translate(-50%, 0); }
+    100% { top: 50%; transform: translate(-50%, -50%); }
+}
+
+/* Buttons */
+.forgive {
+    position: absolute;
+    top: 75%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    font-size: 42px;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 45px;
+    padding: 10px;
+    background-color: #b8014d;
+    font-family: "Miniver", cursive;
+    z-index: 10;
+}
+.forgive:hover{
+    background-color: #ff006a;
+    cursor: pointer;
+    box-shadow: #b8014d 0px 0px 10px, #f88fbc 0px 0px 25px;
+    transition: all 0.7s ease;
+    opacity: 0.9;
+    padding: 12px;
+    font-size: 43px;
+}
+.deny{
+    position: absolute;
+    top: 77%;
+    left: 84%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: #000000;
+    font-family: Poppins, sans-serif;
+    box-shadow: #000000 0px 0px 10px, #ff006a 0px 0px 15px;
+    z-index: 10;
+}
+.deny:hover{
+    background-color: #a7a7a7;
+    cursor: pointer;
+    box-shadow: #000000 0px 0px 10px, #a7a7a7 0px 0px 30px;
+    transition: all 0.7s ease;
+}
+
+/* Smooth scroll */
+html{
+  scroll-behavior: smooth;
+}
+
+/* Forgive Section */
+#forgive-section {
+  height: 100vh;
+  background: #ffd6e7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Miniver", cursive;
+  text-align: center;
+}
+
+#forgive-section h1 {
+  font-size: 60px;
+  color: #b8014d;
+}
+
+#forgive-section p {
+  font-size: 28px;
+  color: #5a0026;
+}
+
+/* Mobile adjustments (ONLY for positioning) */
+@media(max-width: 600px){
+    .forgive {
+        top: 78%;
+        left: 39%;
+    }
+    .deny {
+        top: 78%;
+        left: 82%;
+    }
+    #falling-text {
+        font-size: 45px;
+    }
+}
