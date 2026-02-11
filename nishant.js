@@ -18,16 +18,34 @@ window.addEventListener("DOMContentLoaded", () => {
     const forgiveBtn = document.querySelector(".forgive");
     const forgiveSection = document.getElementById("forgive-section");
 
+    // Constant-speed smooth scroll
+    function smoothScrollTo(element, duration = 2000) {
+        const start = window.pageYOffset;
+        const end = element.getBoundingClientRect().top + start;
+        const distance = end - start;
+        const startTime = performance.now();
+
+        function scroll() {
+            const now = performance.now();
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1); // 0 → 1
+            window.scrollTo(0, start + distance * progress); // linear movement
+            if (progress < 1) requestAnimationFrame(scroll);
+        }
+
+        requestAnimationFrame(scroll);
+    }
+
     forgiveBtn.addEventListener("click", () => {
-        // Add class to trigger animation
+        // Trigger hover animation
         forgiveBtn.classList.add("clicked");
 
-        // Remove the class after animation duration (0.7s)
+        // Remove hover animation class after 0.7s
         setTimeout(() => {
             forgiveBtn.classList.remove("clicked");
         }, 700);
 
-        // Scroll to forgive section
-        forgiveSection.scrollIntoView({ behavior: "smooth" });
+        // Scroll smoothly over 2.5 seconds
+        smoothScrollTo(forgiveSection, 2500);
     });
 });
