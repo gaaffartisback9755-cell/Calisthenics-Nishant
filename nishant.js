@@ -46,6 +46,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }, 700);
 
         // Scroll smoothly over 2.5 seconds
-        smoothScrollTo(forgiveSection, 2500);
+        smoothScrollTo(forgiveSection, 1000);
     });
 });

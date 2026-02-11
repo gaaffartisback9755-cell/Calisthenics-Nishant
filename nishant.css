@@ -134,6 +134,7 @@ html{
 #forgive-section h1 {
   font-size: 60px;
   color: #b8014d;
+  font-family: "Dancing Script", cursive;
 }
 
 #forgive-section p {
@@ -163,4 +164,23 @@ html{
     padding: 12px;
     font-size: 43px;
     transition: all 0.7s ease;
+}
+.everything { 
+    background-color: #ef609c;
+    border-radius: 10px;
+    padding: 10px;
+}
+.promise {
+    text-decoration: underline;
+}
+.me{
+    margin-left: 60px;
+}
+.for{
+    padding: 29px;
+    margin-right: 0px;
+}
+.forgiving{
+    padding-left: 70px;
+    padding-right: 70px;
 }
