@@ -13,10 +13,21 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     bgMusic.volume = 0.3;
-});
 
-// Scroll to forgive section
-document.querySelector(".forgive").addEventListener("click", function() {
-    document.getElementById("forgive-section")
-      .scrollIntoView({ behavior: "smooth" });
+    // Forgive button click animation + scroll
+    const forgiveBtn = document.querySelector(".forgive");
+    const forgiveSection = document.getElementById("forgive-section");
+
+    forgiveBtn.addEventListener("click", () => {
+        // Add class to trigger animation
+        forgiveBtn.classList.add("clicked");
+
+        // Remove the class after animation duration (0.7s)
+        setTimeout(() => {
+            forgiveBtn.classList.remove("clicked");
+        }, 700);
+
+        // Scroll to forgive section
+        forgiveSection.scrollIntoView({ behavior: "smooth" });
+    });
 });

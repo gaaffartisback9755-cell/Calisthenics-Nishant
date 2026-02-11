@@ -155,3 +155,12 @@ html{
         font-size: 45px;
     }
 }
+/* Triggered when button is clicked */
+.forgive.clicked {
+    background-color: #ff006a;
+    box-shadow: #b8014d 0px 0px 10px, #f88fbc 0px 0px 25px;
+    opacity: 0.9;
+    padding: 12px;
+    font-size: 43px;
+    transition: all 0.7s ease;
+}
