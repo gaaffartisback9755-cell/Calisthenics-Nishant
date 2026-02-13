@@ -30,12 +30,20 @@ window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(scroll);
     }
 
-    // ---------- Forgive button ----------
+    // ---------- Forgive button: show forgive section and scroll ----------
     const forgiveBtn = document.querySelector(".forgive");
     const forgiveSection = document.getElementById("forgive-section");
+
     forgiveBtn.addEventListener("click", () => {
         forgiveBtn.classList.add("clicked");
         setTimeout(() => forgiveBtn.classList.remove("clicked"), 700);
+
+        // Show forgive section if hidden
+        if (forgiveSection.style.display === "none" || !forgiveSection.style.display) {
+            forgiveSection.style.display = "flex";
+        }
+
+        // Scroll to forgive section
         smoothScrollTo(forgiveSection, 1000);
     });
 
@@ -50,6 +58,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     forgiveAgainBtn.addEventListener("click", () => {
         denySection.classList.remove("show");
+
+        // Show forgive section if hidden
+        if (forgiveSection.style.display === "none" || !forgiveSection.style.display) {
+            forgiveSection.style.display = "flex";
+        }
+
         smoothScrollTo(forgiveSection, 1000);
     });
 
@@ -86,7 +100,11 @@ window.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             this.textContent = 'Always & Forever! 💞';
             this.disabled = true;
+
+            // Show journey section
             journeySection.style.display = 'flex';
+
+            // Scroll to journey section
             smoothScrollTo(journeySection, 1500);
 
             // Optional floating message
@@ -140,4 +158,18 @@ window.addEventListener("DOMContentLoaded", () => {
             heartRain.appendChild(heart);
         }
     }
+
+    // ---------- OPENING ANIMATION: Real Angel (Font Awesome) ----------
+    function createAngel() {
+        const angel = document.createElement('div');
+        angel.className = 'angel';
+        angel.innerHTML = '<i class="fas fa-angel"></i>'; // Font Awesome angel
+        document.body.appendChild(angel);
+
+        // Remove after animation (4 seconds)
+        setTimeout(() => angel.remove(), 4000);
+    }
+
+    // Trigger angel animation after a short delay
+    setTimeout(createAngel, 300);
 });
