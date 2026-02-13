@@ -158,18 +158,4 @@ window.addEventListener("DOMContentLoaded", () => {
             heartRain.appendChild(heart);
         }
     }
-
-    // ---------- OPENING ANIMATION: Real Angel (Font Awesome) ----------
-    function createAngel() {
-        const angel = document.createElement('div');
-        angel.className = 'angel';
-        angel.innerHTML = '<i class="fas fa-angel"></i>'; // Font Awesome angel
-        document.body.appendChild(angel);
-
-        // Remove after animation (4 seconds)
-        setTimeout(() => angel.remove(), 4000);
-    }
-
-    // Trigger angel animation after a short delay
-    setTimeout(createAngel, 300);
 });

@@ -7,6 +7,12 @@ body {
     user-select: none;
     caret-color: transparent;
     overflow-x: hidden;
+    animation: pageFadeIn 1.5s ease-out; /* Opening animation */
+}
+
+@keyframes pageFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* Video Background */
@@ -309,12 +315,12 @@ body::after {
 }
 
 .sad-msg {
-    font-size: 22px;
+    font-size: 20px;
     font-family: 'Poppins', sans-serif;
     color: #4a001f;
     background: rgba(255, 255, 255, 0.7);
-    margin: 10px 0;
-    padding: 10px 15px;
+    margin: 12px 0;
+    padding: 12px 18px;
     border-radius: 50px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transform: translateX(-10px);
@@ -462,26 +468,6 @@ body::after {
     text-shadow: 2px 2px 0 #ffc0d5;
 }
 
-/* ===== ANGEL ANIMATION ===== */
-.angel {
-    position: fixed;
-    top: 20%;
-    left: -150px;
-    font-size: 100px;
-    color: #fff;
-    text-shadow: 0 0 20px gold;
-    z-index: 10000;
-    pointer-events: none;
-    animation: flyAngel 4s ease-in-out forwards;
-}
-
-@keyframes flyAngel {
-    0% { left: -150px; opacity: 0; transform: scale(0.5); }
-    20% { left: 10%; opacity: 1; transform: scale(1) rotate(5deg); }
-    80% { left: 80%; opacity: 1; transform: scale(1) rotate(-5deg); }
-    100% { left: 110%; opacity: 0; transform: scale(1.2); }
-}
-
 /* ===== MOBILE ADJUSTMENTS ===== */
 @media(max-width: 600px) {
     .forgive {
@@ -508,13 +494,14 @@ body::after {
         padding: 20px 10px;
     }
     .sad-msg {
-        font-size: 18px;
+        font-size: 16px;
+        padding: 10px 14px;
     }
     .final-question {
-        font-size: 24px;
+        font-size: 22px;
     }
     .forgive-again {
-        font-size: 20px;
+        font-size: 18px;
         padding: 10px 20px;
     }
     #journey-section h1 {
@@ -536,9 +523,6 @@ body::after {
     .valentine-btn {
         font-size: 22px;
         padding: 8px 20px;
-    }
-    .angel {
-        font-size: 70px;
     }
 }
 
