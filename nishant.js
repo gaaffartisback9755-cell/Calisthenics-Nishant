@@ -1,11 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-    const bgVideo = document.getElementById("bg-video");
     const bgMusic = document.getElementById("bgMusic");
-
-    // Autoplay video (with fallback)
-    bgVideo.play().catch(() => {
-        document.body.addEventListener("click", () => bgVideo.play(), { once: true });
-    });
 
     // Autoplay music (with fallback)
     bgMusic.play().catch(() => {
@@ -13,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     bgMusic.volume = 0.3;
 
-    // ---------- Smooth scroll utility (mobile-friendly) ----------
+    // ---------- Smooth scroll utility ----------
     function smoothScrollTo(element, duration = 1500) {
         const start = window.pageYOffset;
         const end = element.getBoundingClientRect().top + start;
@@ -30,21 +24,18 @@ window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(scroll);
     }
 
-    // ---------- Forgive button: show forgive section and scroll ----------
+    // ---------- Forgive button ----------
     const forgiveBtn = document.querySelector(".forgive");
     const forgiveSection = document.getElementById("forgive-section");
 
     forgiveBtn.addEventListener("click", () => {
-        // Visual feedback
         forgiveBtn.classList.add("clicked");
         setTimeout(() => forgiveBtn.classList.remove("clicked"), 700);
 
-        // Show forgive section if hidden
         if (forgiveSection.style.display === "none" || forgiveSection.style.display === "") {
             forgiveSection.style.display = "flex";
         }
 
-        // Scroll to forgive section after a tiny delay to ensure layout
         setTimeout(() => {
             smoothScrollTo(forgiveSection, 1000);
         }, 50);
@@ -62,12 +53,10 @@ window.addEventListener("DOMContentLoaded", () => {
     forgiveAgainBtn.addEventListener("click", () => {
         denySection.classList.remove("show");
 
-        // Show forgive section if hidden
         if (forgiveSection.style.display === "none" || forgiveSection.style.display === "") {
             forgiveSection.style.display = "flex";
         }
 
-        // Scroll to forgive section
         setTimeout(() => {
             smoothScrollTo(forgiveSection, 1000);
         }, 50);
@@ -77,7 +66,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (e.target === denySection) denySection.classList.remove("show");
     });
 
-    // ---------- Floating hearts in forgive section ----------
+    // ---------- Floating hearts ----------
     const heartBg = document.querySelector('.heart-bg');
     if (heartBg) {
         for (let i = 0; i < 20; i++) {
@@ -107,15 +96,12 @@ window.addEventListener("DOMContentLoaded", () => {
             this.textContent = 'Always & Forever! 💞';
             this.disabled = true;
 
-            // Show journey section
             journeySection.style.display = 'flex';
 
-            // Scroll to journey section
             setTimeout(() => {
                 smoothScrollTo(journeySection, 1500);
             }, 50);
 
-            // Optional floating message
             const msg = document.createElement('div');
             msg.textContent = '❤️ I love you! ❤️';
             msg.style.position = 'fixed';
@@ -138,7 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ---------- Add fadeInOut keyframes if missing ----------
+    // ---------- Add fadeInOut keyframes ----------
     if (!document.querySelector('#dynamic-style-fade')) {
         const style = document.createElement('style');
         style.id = 'dynamic-style-fade';
@@ -153,7 +139,7 @@ window.addEventListener("DOMContentLoaded", () => {
         document.head.appendChild(style);
     }
 
-    // ---------- Extra hearts for journey section rain ----------
+    // ---------- Heart rain ----------
     const heartRain = document.querySelector('.heart-rain');
     if (heartRain) {
         for (let i = 0; i < 10; i++) {
@@ -169,3 +155,35 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+// ---------- YouTube Player Setup ----------
+let player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-background', {
+        videoId: 'WyOoo2V-9jI',
+        playerVars: {
+            autoplay: 1,
+            controls: 0,
+            disablekb: 1,
+            enablejsapi: 1,
+            fs: 0,
+            iv_load_policy: 3,
+            loop: 1,
+            modestbranding: 1,
+            mute: 1,
+            playsinline: 1,
+            rel: 0,
+            showinfo: 0,
+            start: 0,
+            playlist: 'WyOoo2V-9jI' // Required for looping
+        },
+        events: {
+            onReady: (e) => e.target.playVideo(),
+            onStateChange: (e) => {
+                // Loop when video ends
+                if (e.data === YT.PlayerState.ENDED) e.target.playVideo();
+            }
+        }
+    });
+}
