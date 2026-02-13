@@ -1,3 +1,4 @@
+/* ---------- original styles (unchanged) ---------- */
 /* Gradient background */
 body {
     margin: 0px;
@@ -6,7 +7,7 @@ body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     user-select: none;
     caret-color: transparent;
-    overflow-x: hidden; /* allow vertical scroll */
+    overflow-x: hidden;
 }
 
 /* Video */
@@ -82,6 +83,7 @@ body::after {
     background-color: #b8014d;
     font-family: "Miniver", cursive;
     z-index: 10;
+    align-items: center;
 }
 .forgive:hover{
     background-color: #ff006a;
@@ -121,6 +123,7 @@ html{
 
 /* Forgive Section */
 #forgive-section {
+  position: relative;
   height: 100vh;
   background: #ffd6e7;
   display: flex;
@@ -129,6 +132,7 @@ html{
   justify-content: center;
   font-family: "Miniver", cursive;
   text-align: center;
+  overflow: hidden;
 }
 
 #forgive-section h1 {
@@ -142,7 +146,7 @@ html{
   color: #5a0026;
 }
 
-/* Mobile adjustments (ONLY for positioning) */
+/* Mobile adjustments (original) */
 @media(max-width: 600px){
     .forgive {
         top: 78%;
@@ -156,6 +160,7 @@ html{
         font-size: 45px;
     }
 }
+
 /* Triggered when button is clicked */
 .forgive.clicked {
     background-color: #ff006a;
@@ -184,3 +189,239 @@ html{
     padding-left: 70px;
     padding-right: 70px;
 }
+.valentine{
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* ---------- NEW STYLES (added) ---------- */
+
+/* Deny section - hidden by default */
+#deny-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#deny-section.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.deny-content {
+    background: linear-gradient(145deg, #ffb6c1, #ff99aa);
+    padding: 30px 20px;
+    border-radius: 60px 60px 30px 30px;
+    box-shadow: 0 20px 30px rgba(180, 0, 80, 0.5);
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    border: 3px solid #ff4d7a;
+    animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.sad-messages {
+    margin-bottom: 20px;
+}
+
+.sad-msg {
+    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    color: #4a001f;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transform: translateX(-10px);
+    opacity: 0;
+    animation: slideIn 0.4s forwards;
+}
+
+.sad-msg:nth-child(1) { animation-delay: 0.1s; }
+.sad-msg:nth-child(2) { animation-delay: 0.3s; }
+.sad-msg:nth-child(3) { animation-delay: 0.5s; }
+.sad-msg:nth-child(4) { animation-delay: 0.7s; }
+.sad-msg:nth-child(5) { animation-delay: 0.9s; }
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.final-question {
+    font-size: 28px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 0 #b8014d;
+    margin: 20px 0 10px;
+    opacity: 0;
+    animation: fadeIn 0.5s 1.2s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.forgive-again {
+    background-color: #b8014d;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 15px 30px;
+    font-size: 24px;
+    font-family: "Miniver", cursive;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #5a0026;
+    transition: all 0.2s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s 1.5s forwards;
+    margin-top: 15px;
+}
+
+.forgive-again:hover {
+    background-color: #ff006a;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #5a0026;
+}
+
+.forgive-again:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #5a0026;
+}
+
+/* Heart background animation for forgive section */
+.heart-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.2;
+    color: #ff4d7a;
+    animation: floatHeart 12s infinite ease-in-out;
+    transform-origin: center;
+    user-select: none;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.2;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px) scale(1.1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-40px) translateX(-10px) scale(1.2);
+        opacity: 0.3;
+    }
+    75% {
+        transform: translateY(-60px) translateX(15px) scale(1.1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-80px) translateX(-5px) scale(1);
+        opacity: 0.1;
+    }
+}
+
+/* Also add this to make the pseudo‑element hearts move */
+.heart-bg::before,
+.heart-bg::after {
+    content: "❤️";
+    position: absolute;
+    font-size: 40px;
+    opacity: 0.15;
+    color: #ff4d7a;
+    animation: floatHeart 15s infinite alternate;
+}
+
+.heart-bg::before { left: 10%; top: 20%; animation-duration: 14s; }
+.heart-bg::after { left: 30%; top: 60%; animation-duration: 18s; animation-delay: 2s; }
+
+/* Generate many hearts via extra elements (we'll add them with JS for simplicity) */
+/* Alternatively, we can add a few in HTML, but we'll use JS to spawn them */
+
+/* Mobile fine-tuning for deny section */
+@media(max-width: 600px) {
+    .deny-content {
+        width: 85%;
+        padding: 20px 10px;
+    }
+    .sad-msg {
+        font-size: 18px;
+    }
+    .final-question {
+        font-size: 24px;
+    }
+    .forgive-again {
+        font-size: 20px;
+        padding: 12px 20px;
+    }
+}/* Valentine button */
+.valentine-btn {
+    background: linear-gradient(45deg, #ff4d7a, #ff99bb);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 15px 40px;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(255, 20, 100, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid #fff3f8;
+    text-shadow: 1px 1px 2px #b8014d;
+    position: relative;
+    z-index: 5;
+}
+
+.valentine-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(255, 20, 147, 0.6);
+    background: linear-gradient(45deg, #ff3377, #ff88aa);
+}
+
+.valentine-btn:active {
+    transform: scale(0.95);
+}
+
+/* For mobile, adjust size */
+@media(max-width: 600px) {
+    .valentine-btn {
+        font-size: 24px;
+        padding: 12px 25px;
+    }
+} 

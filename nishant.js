@@ -28,8 +28,8 @@ window.addEventListener("DOMContentLoaded", () => {
         function scroll() {
             const now = performance.now();
             const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1); // 0 → 1
-            window.scrollTo(0, start + distance * progress); // linear movement
+            const progress = Math.min(elapsed / duration, 1);
+            window.scrollTo(0, start + distance * progress);
             if (progress < 1) requestAnimationFrame(scroll);
         }
 
@@ -37,15 +37,57 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     forgiveBtn.addEventListener("click", () => {
-        // Trigger hover animation
         forgiveBtn.classList.add("clicked");
-
-        // Remove hover animation class after 0.7s
         setTimeout(() => {
             forgiveBtn.classList.remove("clicked");
         }, 700);
-
-        // Scroll smoothly over 2.5 seconds
         smoothScrollTo(forgiveSection, 1000);
     });
+
+    // ---------- Deny button functionality ----------
+    const denyBtn = document.querySelector(".deny");
+    const denySection = document.getElementById("deny-section");
+    const forgiveAgainBtn = document.querySelector(".forgive-again");
+
+    denyBtn.addEventListener("click", () => {
+        // Show deny section with sad messages
+        denySection.classList.add("show");
+        // Optionally hide original buttons (kept for clarity, but they are behind overlay)
+        // No need to hide, overlay blocks clicks
+    });
+
+    forgiveAgainBtn.addEventListener("click", () => {
+        // Hide deny section
+        denySection.classList.remove("show");
+        // Scroll to forgive section
+        smoothScrollTo(forgiveSection, 1000);
+    });
+
+    // Click outside the deny content to close? Maybe not, but we can add:
+    denySection.addEventListener("click", (e) => {
+        if (e.target === denySection) {
+            denySection.classList.remove("show");
+        }
+    });
+
+    // ---------- Floating hearts in forgive section ----------
+    const heartBg = document.querySelector('.heart-bg');
+    if (heartBg) {
+        // Create 20 floating hearts
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('span');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 100 + '%';
+            heart.style.fontSize = Math.floor(Math.random() * 30 + 15) + 'px';
+            heart.style.animationDuration = Math.floor(Math.random() * 10 + 8) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.opacity = 0.2 + Math.random() * 0.3;
+            heart.style.position = 'absolute';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '0';
+            heartBg.appendChild(heart);
+        }
+    }
 });

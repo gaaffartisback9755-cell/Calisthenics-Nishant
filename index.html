@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Nishant-Calisthenics</title>
     <link rel="stylesheet" href="nishant.css">
     <link rel="icon" type="image/jpeg" href="romantic.jpg">
@@ -30,8 +30,23 @@
     </div>
 
     <!-- Buttons -->
-    <button class="forgive">Forgive🙏</button>
+    <button class="forgive">Forgive</button>
     <button class="deny">Deny</button>
+
+    <!-- Deny Message Section (hidden initially) -->
+    <div id="deny-section" class="deny-hidden">
+        <div class="deny-content">
+            <div class="sad-messages">
+                <div class="sad-msg">You'll make me cry 😢</div>
+                <div class="sad-msg">My heart will break 💔</div>
+                <div class="sad-msg">I'll be alone forever 💔</div>
+                <div class="sad-msg">No more sweet hugs 😞</div>
+                <div class="sad-msg">I'll miss you so much 😭</div>
+            </div>
+            <div class="final-question">Would you really leave me? 💔</div>
+            <button class="forgive-again">I forgive you ❤️</button>
+        </div>
+    </div>
 
     <!-- Audio -->
     <audio id="bgMusic" loop hidden>
@@ -40,10 +55,14 @@
 
     <!-- Forgive Section -->
     <div id="forgive-section">
+        <!-- Background hearts will be added via CSS pseudo-elements -->
+        <div class="heart-bg"></div>
         <h1>Thank You <span class="for">For <span class="forgiving">Forgiving</span> <span class="me"> Me💓</span></h1>
         <p class="everything">You are my everything🪽</p>
         <p class="promise">I promise I will never leave you again.</p>
+        <button class="valentine-btn" id="valentineBtn">Will you be my valentine? 💘</button>
     </div>
+
     <script src="nishant.js"></script>
 </body>
 </html>
