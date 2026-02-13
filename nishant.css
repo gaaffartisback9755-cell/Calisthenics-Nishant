@@ -1,6 +1,7 @@
 /* ===== GLOBAL & LAYOUT ===== */
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Removes blue tap on mobile */
 }
 
 body {
@@ -89,6 +90,7 @@ body::after {
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .forgive:hover {
@@ -115,6 +117,7 @@ body::after {
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .deny:hover {
@@ -141,6 +144,7 @@ body::after {
     text-shadow: 1px 1px 2px #b8014d;
     position: relative;
     z-index: 5;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .valentine-btn:hover:not(:disabled) {
@@ -169,6 +173,7 @@ body::after {
     box-shadow: 0 5px 0 #5a0026;
     transition: all 0.2s ease;
     margin-top: 15px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .forgive-again:hover {
@@ -366,7 +371,7 @@ body::after {
 
 /* ===== JOURNEY SECTION ===== */
 #journey-section {
-    min-height: 100vh;
+    min-height: 100vh; /* Default for larger screens */
     height: auto;
     background: linear-gradient(145deg, #ffd9e8, #ffb3c6);
     display: flex;
@@ -377,6 +382,27 @@ body::after {
     position: relative;
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
+}
+
+/* Mobile: reduce height so all content fits in one view */
+@media (max-width: 600px) {
+    #journey-section {
+        min-height: auto;
+        padding: 30px 15px;
+    }
+    .journey-content {
+        padding: 25px 15px;
+    }
+    .decorations {
+        gap: 15px;
+        margin: 20px 0;
+    }
+    .heart-rain {
+        height: 80px;
+    }
+    .closing {
+        margin: 15px 0 5px;
+    }
 }
 
 .journey-content {
