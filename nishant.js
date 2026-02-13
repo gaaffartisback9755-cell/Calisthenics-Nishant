@@ -13,8 +13,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     bgMusic.volume = 0.3;
 
-    // ---------- Smooth scroll utility ----------
-    function smoothScrollTo(element, duration = 2000) {
+    // ---------- Smooth scroll utility (mobile-friendly) ----------
+    function smoothScrollTo(element, duration = 1500) {
         const start = window.pageYOffset;
         const end = element.getBoundingClientRect().top + start;
         const distance = end - start;
@@ -35,16 +35,19 @@ window.addEventListener("DOMContentLoaded", () => {
     const forgiveSection = document.getElementById("forgive-section");
 
     forgiveBtn.addEventListener("click", () => {
+        // Visual feedback
         forgiveBtn.classList.add("clicked");
         setTimeout(() => forgiveBtn.classList.remove("clicked"), 700);
 
         // Show forgive section if hidden
-        if (forgiveSection.style.display === "none" || !forgiveSection.style.display) {
+        if (forgiveSection.style.display === "none" || forgiveSection.style.display === "") {
             forgiveSection.style.display = "flex";
         }
 
-        // Scroll to forgive section
-        smoothScrollTo(forgiveSection, 1000);
+        // Scroll to forgive section after a tiny delay to ensure layout
+        setTimeout(() => {
+            smoothScrollTo(forgiveSection, 1000);
+        }, 50);
     });
 
     // ---------- Deny button ----------
@@ -60,11 +63,14 @@ window.addEventListener("DOMContentLoaded", () => {
         denySection.classList.remove("show");
 
         // Show forgive section if hidden
-        if (forgiveSection.style.display === "none" || !forgiveSection.style.display) {
+        if (forgiveSection.style.display === "none" || forgiveSection.style.display === "") {
             forgiveSection.style.display = "flex";
         }
 
-        smoothScrollTo(forgiveSection, 1000);
+        // Scroll to forgive section
+        setTimeout(() => {
+            smoothScrollTo(forgiveSection, 1000);
+        }, 50);
     });
 
     denySection.addEventListener("click", (e) => {
@@ -105,7 +111,9 @@ window.addEventListener("DOMContentLoaded", () => {
             journeySection.style.display = 'flex';
 
             // Scroll to journey section
-            smoothScrollTo(journeySection, 1500);
+            setTimeout(() => {
+                smoothScrollTo(journeySection, 1500);
+            }, 50);
 
             // Optional floating message
             const msg = document.createElement('div');
@@ -115,14 +123,16 @@ window.addEventListener("DOMContentLoaded", () => {
             msg.style.left = '50%';
             msg.style.transform = 'translate(-50%, -50%)';
             msg.style.background = '#ffd6e7';
-            msg.style.padding = '20px 40px';
+            msg.style.padding = 'clamp(15px, 5vw, 40px) clamp(20px, 8vw, 40px)';
             msg.style.borderRadius = '60px';
-            msg.style.fontSize = '40px';
+            msg.style.fontSize = 'clamp(24px, 8vw, 40px)';
             msg.style.fontFamily = '"Dancing Script", cursive';
             msg.style.color = '#b8014d';
             msg.style.boxShadow = '0 10px 30px rgba(255,0,100,0.5)';
             msg.style.zIndex = '100';
             msg.style.animation = 'fadeInOut 2s forwards';
+            msg.style.textAlign = 'center';
+            msg.style.whiteSpace = 'nowrap';
             document.body.appendChild(msg);
             setTimeout(() => msg.remove(), 2000);
         });

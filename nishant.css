@@ -1,4 +1,8 @@
 /* ===== GLOBAL & LAYOUT ===== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -7,7 +11,7 @@ body {
     user-select: none;
     caret-color: transparent;
     overflow-x: hidden;
-    animation: pageFadeIn 1.5s ease-out; /* Opening animation */
+    animation: pageFadeIn 1.5s ease-out;
 }
 
 @keyframes pageFadeIn {
@@ -51,7 +55,7 @@ body::after {
     top: -150px;
     left: 50%;
     transform: translate(-50%, 0);
-    font-size: 80px;
+    font-size: clamp(40px, 12vw, 80px);
     font-weight: 900;
     white-space: nowrap;
     background: linear-gradient(145deg, #e4e4df, #ffffff, #000000);
@@ -74,24 +78,23 @@ body::after {
     top: 75%;
     left: 40%;
     transform: translate(-50%, -50%);
-    font-size: 42px;
+    font-size: clamp(28px, 6vw, 42px);
     color: #FFFFFF;
     border: none;
     border-radius: 45px;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #b8014d;
     font-family: "Miniver", cursive;
     z-index: 10;
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .forgive:hover {
     background-color: #ff006a;
     box-shadow: #b8014d 0px 0px 10px, #f88fbc 0px 0px 25px;
     opacity: 0.9;
-    padding: 12px;
-    font-size: 43px;
     transform: translate(-50%, -50%) scale(1.05);
 }
 
@@ -100,17 +103,18 @@ body::after {
     top: 77%;
     left: 84%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
+    font-size: clamp(16px, 4vw, 20px);
     color: #fff;
     border: none;
     border-radius: 30px;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #000000;
     font-family: Poppins, sans-serif;
     box-shadow: #000000 0px 0px 10px, #ff006a 0px 0px 15px;
     z-index: 10;
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .deny:hover {
@@ -126,7 +130,7 @@ body::after {
     border-radius: 50px;
     color: white;
     font-family: 'Dancing Script', cursive;
-    font-size: 28px;
+    font-size: clamp(22px, 5vw, 28px);
     font-weight: bold;
     padding: 12px 30px;
     margin-top: 20px;
@@ -159,7 +163,7 @@ body::after {
     border: none;
     border-radius: 40px;
     padding: 15px 30px;
-    font-size: 24px;
+    font-size: clamp(18px, 4vw, 24px);
     font-family: "Miniver", cursive;
     cursor: pointer;
     box-shadow: 0 5px 0 #5a0026;
@@ -183,15 +187,14 @@ body::after {
     background-color: #ff006a;
     box-shadow: #b8014d 0px 0px 10px, #f88fbc 0px 0px 25px;
     opacity: 0.9;
-    padding: 12px;
-    font-size: 43px;
     transform: translate(-50%, -50%) scale(1.02);
 }
 
 /* ===== FORGIVE SECTION ===== */
 #forgive-section {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background: #ffd6e7;
     display: flex;
     flex-direction: column;
@@ -200,32 +203,38 @@ body::after {
     font-family: "Miniver", cursive;
     text-align: center;
     overflow: hidden;
+    padding: 40px 20px;
+    box-sizing: border-box;
 }
 
 #forgive-section h1 {
-    font-size: 60px;
+    font-size: clamp(36px, 8vw, 60px);
     color: #b8014d;
     font-family: "Dancing Script", cursive;
+    margin: 0 0 20px;
+    line-height: 1.2;
 }
 
 #forgive-section p {
-    font-size: 28px;
+    font-size: clamp(18px, 4vw, 28px);
     color: #5a0026;
+    margin: 10px 0;
+    max-width: 90%;
 }
 
 .everything { 
     background-color: #ef609c;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .promise {
     text-decoration: underline;
 }
 
-.me { margin-left: 60px; }
-.for { padding: 29px; margin-right: 0; }
-.forgiving { padding-left: 70px; padding-right: 70px; }
+.me { margin-left: 0; display: inline-block; }
+.for { padding: 0 10px; display: inline-block; }
+.forgiving { padding: 0 10px; display: inline-block; }
 
 /* Heart background */
 .heart-bg {
@@ -286,6 +295,8 @@ body::after {
     transition: opacity 0.5s ease;
     opacity: 0;
     pointer-events: none;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 #deny-section.show {
@@ -315,7 +326,7 @@ body::after {
 }
 
 .sad-msg {
-    font-size: 20px;
+    font-size: clamp(16px, 4vw, 20px);
     font-family: 'Poppins', sans-serif;
     color: #4a001f;
     background: rgba(255, 255, 255, 0.7);
@@ -339,7 +350,7 @@ body::after {
 }
 
 .final-question {
-    font-size: 28px;
+    font-size: clamp(22px, 5vw, 28px);
     font-family: 'Dancing Script', cursive;
     font-weight: bold;
     color: #fff;
@@ -356,11 +367,12 @@ body::after {
 /* ===== JOURNEY SECTION ===== */
 #journey-section {
     min-height: 100vh;
+    height: auto;
     background: linear-gradient(145deg, #ffd9e8, #ffb3c6);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 40px 20px;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -374,7 +386,7 @@ body::after {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 70px 70px 40px 40px;
-    padding: 50px 30px;
+    padding: 40px 20px;
     box-shadow: 0 30px 50px rgba(255, 80, 120, 0.3), inset 0 2px 5px rgba(255,255,255,0.6);
     border: 2px solid rgba(255, 255, 255, 0.6);
     text-align: center;
@@ -384,7 +396,7 @@ body::after {
 
 #journey-section h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 68px;
+    font-size: clamp(36px, 8vw, 68px);
     color: #a3004b;
     margin: 0 0 15px;
     text-shadow: 3px 3px 0 rgba(255, 220, 240, 0.8);
@@ -392,7 +404,7 @@ body::after {
 }
 
 .journey-message {
-    font-size: 28px;
+    font-size: clamp(18px, 4vw, 28px);
     color: #4a1e2f;
     font-weight: 400;
     background: rgba(255, 255, 255, 0.5);
@@ -408,13 +420,13 @@ body::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
     flex-wrap: wrap;
     margin: 40px 0 30px;
 }
 
 .teddy, .balloon {
-    font-size: 80px;
+    font-size: clamp(50px, 12vw, 80px);
     filter: drop-shadow(0 10px 15px rgba(180, 20, 80, 0.3));
     transition: transform 0.2s;
 }
@@ -462,36 +474,43 @@ body::after {
 
 .closing {
     font-family: 'Sacramento', cursive;
-    font-size: 56px;
+    font-size: clamp(36px, 8vw, 56px);
     color: #b3004c;
     margin: 30px 0 10px;
     text-shadow: 2px 2px 0 #ffc0d5;
 }
 
-/* ===== MOBILE ADJUSTMENTS ===== */
-@media(max-width: 600px) {
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 600px) {
     .forgive {
         top: 78%;
         left: 35%;
-        font-size: 32px;
         padding: 8px 16px;
-    }
-    .forgive:hover {
-        font-size: 33px;
-        padding: 10px 18px;
     }
     .deny {
         top: 78%;
         left: 78%;
-        font-size: 18px;
         padding: 8px 16px;
     }
-    #falling-text {
-        font-size: 45px;
+    #forgive-section h1 {
+        font-size: 36px;
+    }
+    #forgive-section p {
+        font-size: 18px;
+    }
+    .valentine-btn {
+        font-size: 22px;
+        padding: 8px 20px;
+    }
+    .heart {
+        font-size: 20px;
+    }
+    .heart-bg::before,
+    .heart-bg::after {
+        font-size: 30px;
     }
     .deny-content {
-        width: 85%;
-        padding: 20px 10px;
+        padding: 20px 15px;
     }
     .sad-msg {
         font-size: 16px;
@@ -503,26 +522,6 @@ body::after {
     .forgive-again {
         font-size: 18px;
         padding: 10px 20px;
-    }
-    #journey-section h1 {
-        font-size: 44px;
-    }
-    .journey-message {
-        font-size: 22px;
-        padding: 8px 20px;
-    }
-    .decorations {
-        gap: 20px;
-    }
-    .teddy, .balloon {
-        font-size: 55px;
-    }
-    .closing {
-        font-size: 42px;
-    }
-    .valentine-btn {
-        font-size: 22px;
-        padding: 8px 20px;
     }
 }
 
