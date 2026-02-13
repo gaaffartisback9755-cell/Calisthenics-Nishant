@@ -2,23 +2,18 @@ window.addEventListener("DOMContentLoaded", () => {
     const bgVideo = document.getElementById("bg-video");
     const bgMusic = document.getElementById("bgMusic");
 
-    // Autoplay video
+    // Autoplay video (with fallback)
     bgVideo.play().catch(() => {
         document.body.addEventListener("click", () => bgVideo.play(), { once: true });
     });
 
-    // Autoplay music
+    // Autoplay music (with fallback)
     bgMusic.play().catch(() => {
         document.body.addEventListener("click", () => bgMusic.play(), { once: true });
     });
-
     bgMusic.volume = 0.3;
 
-    // Forgive button click animation + scroll
-    const forgiveBtn = document.querySelector(".forgive");
-    const forgiveSection = document.getElementById("forgive-section");
-
-    // Constant-speed smooth scroll
+    // ---------- Smooth scroll utility ----------
     function smoothScrollTo(element, duration = 2000) {
         const start = window.pageYOffset;
         const end = element.getBoundingClientRect().top + start;
@@ -32,48 +27,39 @@ window.addEventListener("DOMContentLoaded", () => {
             window.scrollTo(0, start + distance * progress);
             if (progress < 1) requestAnimationFrame(scroll);
         }
-
         requestAnimationFrame(scroll);
     }
 
+    // ---------- Forgive button ----------
+    const forgiveBtn = document.querySelector(".forgive");
+    const forgiveSection = document.getElementById("forgive-section");
     forgiveBtn.addEventListener("click", () => {
         forgiveBtn.classList.add("clicked");
-        setTimeout(() => {
-            forgiveBtn.classList.remove("clicked");
-        }, 700);
+        setTimeout(() => forgiveBtn.classList.remove("clicked"), 700);
         smoothScrollTo(forgiveSection, 1000);
     });
 
-    // ---------- Deny button functionality ----------
+    // ---------- Deny button ----------
     const denyBtn = document.querySelector(".deny");
     const denySection = document.getElementById("deny-section");
     const forgiveAgainBtn = document.querySelector(".forgive-again");
 
     denyBtn.addEventListener("click", () => {
-        // Show deny section with sad messages
         denySection.classList.add("show");
-        // Optionally hide original buttons (kept for clarity, but they are behind overlay)
-        // No need to hide, overlay blocks clicks
     });
 
     forgiveAgainBtn.addEventListener("click", () => {
-        // Hide deny section
         denySection.classList.remove("show");
-        // Scroll to forgive section
         smoothScrollTo(forgiveSection, 1000);
     });
 
-    // Click outside the deny content to close? Maybe not, but we can add:
     denySection.addEventListener("click", (e) => {
-        if (e.target === denySection) {
-            denySection.classList.remove("show");
-        }
+        if (e.target === denySection) denySection.classList.remove("show");
     });
 
     // ---------- Floating hearts in forgive section ----------
     const heartBg = document.querySelector('.heart-bg');
     if (heartBg) {
-        // Create 20 floating hearts
         for (let i = 0; i < 20; i++) {
             const heart = document.createElement('span');
             heart.className = 'heart';
@@ -88,6 +74,70 @@ window.addEventListener("DOMContentLoaded", () => {
             heart.style.pointerEvents = 'none';
             heart.style.zIndex = '0';
             heartBg.appendChild(heart);
+        }
+    }
+
+    // ---------- Valentine button & Journey section ----------
+    const valentineBtn = document.getElementById('valentineBtn');
+    const journeySection = document.getElementById('journey-section');
+
+    if (valentineBtn && journeySection) {
+        valentineBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.textContent = 'Always & Forever! 💞';
+            this.disabled = true;
+            journeySection.style.display = 'flex';
+            smoothScrollTo(journeySection, 1500);
+
+            // Optional floating message
+            const msg = document.createElement('div');
+            msg.textContent = '❤️ I love you! ❤️';
+            msg.style.position = 'fixed';
+            msg.style.top = '50%';
+            msg.style.left = '50%';
+            msg.style.transform = 'translate(-50%, -50%)';
+            msg.style.background = '#ffd6e7';
+            msg.style.padding = '20px 40px';
+            msg.style.borderRadius = '60px';
+            msg.style.fontSize = '40px';
+            msg.style.fontFamily = '"Dancing Script", cursive';
+            msg.style.color = '#b8014d';
+            msg.style.boxShadow = '0 10px 30px rgba(255,0,100,0.5)';
+            msg.style.zIndex = '100';
+            msg.style.animation = 'fadeInOut 2s forwards';
+            document.body.appendChild(msg);
+            setTimeout(() => msg.remove(), 2000);
+        });
+    }
+
+    // ---------- Add fadeInOut keyframes if missing ----------
+    if (!document.querySelector('#dynamic-style-fade')) {
+        const style = document.createElement('style');
+        style.id = 'dynamic-style-fade';
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, -30%); }
+                20% { opacity: 1; transform: translate(-50%, -50%); }
+                80% { opacity: 1; transform: translate(-50%, -50%); }
+                100% { opacity: 0; transform: translate(-50%, -70%); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // ---------- Extra hearts for journey section rain ----------
+    const heartRain = document.querySelector('.heart-rain');
+    if (heartRain) {
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('span');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px';
+            heart.style.animation = `rain ${Math.random() * 3 + 2}s linear infinite`;
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.opacity = 0.5;
+            heartRain.appendChild(heart);
         }
     }
 });

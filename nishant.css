@@ -1,8 +1,7 @@
-/* ---------- original styles (unchanged) ---------- */
-/* Gradient background */
+/* ===== GLOBAL & LAYOUT ===== */
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background: linear-gradient(135deg, #df1569, #f1418b, #df1569);
     font-family: 'Comic Sans MS', cursive, sans-serif;
     user-select: none;
@@ -10,7 +9,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Video */
+/* Video Background */
 video {
     position: fixed;
     top: 50%;
@@ -22,7 +21,7 @@ video {
     z-index: -2;
 }
 
-/* Overlay */
+/* Pink Overlay */
 body::after {
     content: "";
     position: fixed;
@@ -30,16 +29,11 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 0, 128, 0.6),
-        rgba(255, 182, 193, 0.2),
-        rgba(255, 0, 128, 0.6)
-    );
+    background: linear-gradient(to bottom, rgba(255, 0, 128, 0.6), rgba(255, 182, 193, 0.2), rgba(255, 0, 128, 0.6));
     z-index: -1;
 }
 
-/* Falling Text */
+/* ===== FALLING TEXT ===== */
 #sorry-container {
     position: relative;
     width: 100%;
@@ -53,7 +47,6 @@ body::after {
     transform: translate(-50%, 0);
     font-size: 80px;
     font-weight: 900;
-    color: #FFD700;
     white-space: nowrap;
     background: linear-gradient(145deg, #e4e4df, #ffffff, #000000);
     background-clip: text;  
@@ -69,135 +62,194 @@ body::after {
     100% { top: 50%; transform: translate(-50%, -50%); }
 }
 
-/* Buttons */
+/* ===== BUTTONS (UNIFIED SIZE) ===== */
+.forgive, .deny, .valentine-btn, .forgive-again {
+    font-family: "Miniver", cursive;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(180, 0, 80, 0.3);
+    font-size: 28px;           /* consistent base size */
+    padding: 12px 30px;         /* consistent padding */
+    line-height: 1.2;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Forgive button (slightly larger as requested) */
 .forgive {
     position: absolute;
     top: 75%;
     left: 40%;
     transform: translate(-50%, -50%);
-    font-size: 42px;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 45px;
-    padding: 10px;
     background-color: #b8014d;
-    font-family: "Miniver", cursive;
+    color: #fff;
+    font-size: 34px;            /* bigger */
+    padding: 14px 38px;          /* bigger */
     z-index: 10;
-    align-items: center;
 }
-.forgive:hover{
+
+.forgive:hover {
     background-color: #ff006a;
-    cursor: pointer;
     box-shadow: #b8014d 0px 0px 10px, #f88fbc 0px 0px 25px;
-    transition: all 0.7s ease;
     opacity: 0.9;
-    padding: 12px;
-    font-size: 43px;
+    transform: translate(-50%, -50%) scale(1.02);
 }
-.deny{
+
+/* Deny button */
+.deny {
     position: absolute;
     top: 77%;
     left: 84%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    padding: 10px;
     background-color: #000000;
+    color: #fff;
     font-family: Poppins, sans-serif;
     box-shadow: #000000 0px 0px 10px, #ff006a 0px 0px 15px;
     z-index: 10;
 }
-.deny:hover{
+
+.deny:hover {
     background-color: #a7a7a7;
-    cursor: pointer;
     box-shadow: #000000 0px 0px 10px, #a7a7a7 0px 0px 30px;
-    transition: all 0.7s ease;
 }
 
-/* Smooth scroll */
-html{
-  scroll-behavior: smooth;
+/* Valentine button */
+.valentine-btn {
+    background: linear-gradient(45deg, #ff4d7a, #ff99bb);
+    color: white;
+    border: 2px solid #fff3f8;
+    text-shadow: 1px 1px 2px #b8014d;
+    margin-top: 20px;
+    z-index: 5;
 }
 
-/* Forgive Section */
-#forgive-section {
-  position: relative;
-  height: 100vh;
-  background: #ffd6e7;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "Miniver", cursive;
-  text-align: center;
-  overflow: hidden;
+.valentine-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(255, 20, 147, 0.6);
+    background: linear-gradient(45deg, #ff3377, #ff88aa);
 }
 
-#forgive-section h1 {
-  font-size: 60px;
-  color: #b8014d;
-  font-family: "Dancing Script", cursive;
+.valentine-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+    box-shadow: 0 5px 10px rgba(255,20,100,0.3);
 }
 
-#forgive-section p {
-  font-size: 28px;
-  color: #5a0026;
+/* Forgive-again button (inside deny popup) */
+.forgive-again {
+    background-color: #b8014d;
+    color: white;
+    box-shadow: 0 5px 0 #5a0026;
+    font-size: 26px;
+    padding: 12px 30px;
+    margin-top: 15px;
 }
 
-/* Mobile adjustments (original) */
-@media(max-width: 600px){
-    .forgive {
-        top: 78%;
-        left: 39%;
-    }
-    .deny {
-        top: 78%;
-        left: 82%;
-    }
-    #falling-text {
-        font-size: 45px;
-    }
+.forgive-again:hover {
+    background-color: #ff006a;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #5a0026;
 }
 
-/* Triggered when button is clicked */
+.forgive-again:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #5a0026;
+}
+
+/* Clicked effect for forgive button */
 .forgive.clicked {
     background-color: #ff006a;
     box-shadow: #b8014d 0px 0px 10px, #f88fbc 0px 0px 25px;
     opacity: 0.9;
-    padding: 12px;
-    font-size: 43px;
-    transition: all 0.7s ease;
+    transform: translate(-50%, -50%) scale(1.02);
 }
+
+/* ===== FORGIVE SECTION ===== */
+#forgive-section {
+    position: relative;
+    height: 100vh;
+    background: #ffd6e7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Miniver", cursive;
+    text-align: center;
+    overflow: hidden;
+}
+
+#forgive-section h1 {
+    font-size: 60px;
+    color: #b8014d;
+    font-family: "Dancing Script", cursive;
+}
+
+#forgive-section p {
+    font-size: 28px;
+    color: #5a0026;
+}
+
 .everything { 
     background-color: #ef609c;
     border-radius: 10px;
     padding: 10px;
 }
+
 .promise {
     text-decoration: underline;
 }
-.me{
-    margin-left: 60px;
-}
-.for{
-    padding: 29px;
-    margin-right: 0px;
-}
-.forgiving{
-    padding-left: 70px;
-    padding-right: 70px;
-}
-.valentine{
-    font-size: 10px;
-    font-weight: bold;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+
+.me { margin-left: 60px; }
+.for { padding: 29px; margin-right: 0; }
+.forgiving { padding-left: 70px; padding-right: 70px; }
+
+/* Heart background */
+.heart-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
 }
 
-/* ---------- NEW STYLES (added) ---------- */
+.heart {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.2;
+    color: #ff4d7a;
+    animation: floatHeart 12s infinite ease-in-out;
+    transform-origin: center;
+    user-select: none;
+}
 
-/* Deny section - hidden by default */
+@keyframes floatHeart {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
+    25% { transform: translateY(-20px) translateX(10px) scale(1.1); opacity: 0.5; }
+    50% { transform: translateY(-40px) translateX(-10px) scale(1.2); opacity: 0.3; }
+    75% { transform: translateY(-60px) translateX(15px) scale(1.1); opacity: 0.4; }
+    100% { transform: translateY(-80px) translateX(-5px) scale(1); opacity: 0.1; }
+}
+
+.heart-bg::before,
+.heart-bg::after {
+    content: "❤️";
+    position: absolute;
+    font-size: 40px;
+    opacity: 0.15;
+    color: #ff4d7a;
+    animation: floatHeart 15s infinite alternate;
+}
+
+.heart-bg::before { left: 10%; top: 20%; animation-duration: 14s; }
+.heart-bg::after { left: 30%; top: 60%; animation-duration: 18s; animation-delay: 2s; }
+
+/* ===== DENY POPUP ===== */
 #deny-section {
     position: fixed;
     top: 0;
@@ -262,10 +314,7 @@ html{
 .sad-msg:nth-child(5) { animation-delay: 0.9s; }
 
 @keyframes slideIn {
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    to { transform: translateX(0); opacity: 1; }
 }
 
 .final-question {
@@ -283,97 +332,138 @@ html{
     to { opacity: 1; }
 }
 
-.forgive-again {
-    background-color: #b8014d;
-    color: white;
-    border: none;
-    border-radius: 40px;
-    padding: 15px 30px;
-    font-size: 24px;
-    font-family: "Miniver", cursive;
-    cursor: pointer;
-    box-shadow: 0 5px 0 #5a0026;
-    transition: all 0.2s ease;
-    opacity: 0;
-    animation: fadeIn 0.5s 1.5s forwards;
-    margin-top: 15px;
+/* ===== JOURNEY SECTION ===== */
+#journey-section {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #ffd9e8, #ffb3c6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
 }
 
-.forgive-again:hover {
-    background-color: #ff006a;
-    transform: translateY(-2px);
-    box-shadow: 0 7px 0 #5a0026;
-}
-
-.forgive-again:active {
-    transform: translateY(5px);
-    box-shadow: 0 2px 0 #5a0026;
-}
-
-/* Heart background animation for forgive section */
-.heart-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+.journey-content {
+    max-width: 850px;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 70px 70px 40px 40px;
+    padding: 50px 30px;
+    box-shadow: 0 30px 50px rgba(255, 80, 120, 0.3), inset 0 2px 5px rgba(255,255,255,0.6);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+#journey-section h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 68px;
+    color: #a3004b;
+    margin: 0 0 15px;
+    text-shadow: 3px 3px 0 rgba(255, 220, 240, 0.8);
+    letter-spacing: 1px;
+}
+
+.journey-message {
+    font-size: 28px;
+    color: #4a1e2f;
+    font-weight: 400;
+    background: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 60px;
+    margin: 10px 0 30px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(255,200,220,0.5);
+}
+
+.decorations {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 40px 0 30px;
+}
+
+.teddy, .balloon {
+    font-size: 80px;
+    filter: drop-shadow(0 10px 15px rgba(180, 20, 80, 0.3));
+    transition: transform 0.2s;
+}
+
+.teddy {
+    animation: floatTeddy 3s infinite ease-in-out;
+}
+
+.balloon {
+    animation: floatBalloon 4s infinite alternate;
+}
+
+@keyframes floatTeddy {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes floatBalloon {
+    0% { transform: translateY(0) rotate(-5deg); }
+    100% { transform: translateY(-25px) rotate(5deg); }
+}
+
+.heart-rain {
+    position: relative;
+    height: 120px;
+    width: 100%;
+    margin: 20px 0;
     overflow: hidden;
 }
 
-.heart {
+.heart-rain span {
     position: absolute;
-    font-size: 30px;
-    opacity: 0.2;
-    color: #ff4d7a;
-    animation: floatHeart 12s infinite ease-in-out;
-    transform-origin: center;
+    color: #ff3377;
+    font-size: 24px;
+    opacity: 0.5;
+    animation: rain 3s linear infinite;
+    pointer-events: none;
     user-select: none;
 }
 
-@keyframes floatHeart {
-    0% {
-        transform: translateY(0) translateX(0) scale(1);
-        opacity: 0.2;
-    }
-    25% {
-        transform: translateY(-20px) translateX(10px) scale(1.1);
-        opacity: 0.5;
-    }
-    50% {
-        transform: translateY(-40px) translateX(-10px) scale(1.2);
-        opacity: 0.3;
-    }
-    75% {
-        transform: translateY(-60px) translateX(15px) scale(1.1);
-        opacity: 0.4;
-    }
-    100% {
-        transform: translateY(-80px) translateX(-5px) scale(1);
-        opacity: 0.1;
-    }
+@keyframes rain {
+    0% { top: -30px; opacity: 0.8; transform: rotate(0deg); }
+    100% { top: 150px; opacity: 0; transform: rotate(360deg); }
 }
 
-/* Also add this to make the pseudo‑element hearts move */
-.heart-bg::before,
-.heart-bg::after {
-    content: "❤️";
-    position: absolute;
-    font-size: 40px;
-    opacity: 0.15;
-    color: #ff4d7a;
-    animation: floatHeart 15s infinite alternate;
+.closing {
+    font-family: 'Sacramento', cursive;
+    font-size: 56px;
+    color: #b3004c;
+    margin: 30px 0 10px;
+    text-shadow: 2px 2px 0 #ffc0d5;
 }
 
-.heart-bg::before { left: 10%; top: 20%; animation-duration: 14s; }
-.heart-bg::after { left: 30%; top: 60%; animation-duration: 18s; animation-delay: 2s; }
-
-/* Generate many hearts via extra elements (we'll add them with JS for simplicity) */
-/* Alternatively, we can add a few in HTML, but we'll use JS to spawn them */
-
-/* Mobile fine-tuning for deny section */
+/* ===== MOBILE ADJUSTMENTS ===== */
 @media(max-width: 600px) {
+    .forgive {
+        top: 78%;
+        left: 35%;
+        font-size: 28px;
+        padding: 10px 22px;
+    }
+    .deny {
+        top: 78%;
+        left: 78%;
+        font-size: 22px;
+        padding: 8px 20px;
+    }
+    #falling-text {
+        font-size: 45px;
+    }
     .deny-content {
         width: 85%;
         padding: 20px 10px;
@@ -386,42 +476,31 @@ html{
     }
     .forgive-again {
         font-size: 20px;
-        padding: 12px 20px;
+        padding: 10px 20px;
     }
-}/* Valentine button */
-.valentine-btn {
-    background: linear-gradient(45deg, #ff4d7a, #ff99bb);
-    border: none;
-    border-radius: 50px;
-    color: white;
-    font-family: 'Dancing Script', cursive;
-    font-size: 32px;
-    font-weight: bold;
-    padding: 15px 40px;
-    margin-top: 20px;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(255, 20, 100, 0.4);
-    transition: all 0.3s ease;
-    border: 2px solid #fff3f8;
-    text-shadow: 1px 1px 2px #b8014d;
-    position: relative;
-    z-index: 5;
-}
-
-.valentine-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 25px rgba(255, 20, 147, 0.6);
-    background: linear-gradient(45deg, #ff3377, #ff88aa);
-}
-
-.valentine-btn:active {
-    transform: scale(0.95);
-}
-
-/* For mobile, adjust size */
-@media(max-width: 600px) {
+    #journey-section h1 {
+        font-size: 44px;
+    }
+    .journey-message {
+        font-size: 22px;
+        padding: 8px 20px;
+    }
+    .decorations {
+        gap: 20px;
+    }
+    .teddy, .balloon {
+        font-size: 55px;
+    }
+    .closing {
+        font-size: 42px;
+    }
     .valentine-btn {
         font-size: 24px;
-        padding: 12px 25px;
+        padding: 10px 25px;
     }
-} 
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
