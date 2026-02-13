@@ -1,7 +1,7 @@
 /* Gradient background */
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     background: linear-gradient(135deg, #df1569, #f1418b, #df1569);
     font-family: 'Comic Sans MS', cursive, sans-serif;
     user-select: none;
