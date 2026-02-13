@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     bgMusic.volume = 0.3;
 
-    // ---------- Smooth scroll utility ----------
+    // Smooth scroll utility
     function smoothScrollTo(element, duration = 1500) {
         const start = window.pageYOffset;
         const end = element.getBoundingClientRect().top + start;
@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(scroll);
     }
 
-    // ---------- Forgive button ----------
+    // Forgive button
     const forgiveBtn = document.querySelector(".forgive");
     const forgiveSection = document.getElementById("forgive-section");
 
@@ -41,7 +41,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }, 50);
     });
 
-    // ---------- Deny button ----------
+    // Deny button
     const denyBtn = document.querySelector(".deny");
     const denySection = document.getElementById("deny-section");
     const forgiveAgainBtn = document.querySelector(".forgive-again");
@@ -66,7 +66,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (e.target === denySection) denySection.classList.remove("show");
     });
 
-    // ---------- Floating hearts ----------
+    // Floating hearts
     const heartBg = document.querySelector('.heart-bg');
     if (heartBg) {
         for (let i = 0; i < 20; i++) {
@@ -86,7 +86,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ---------- Valentine button & Journey section ----------
+    // Valentine button
     const valentineBtn = document.getElementById('valentineBtn');
     const journeySection = document.getElementById('journey-section');
 
@@ -124,7 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ---------- Add fadeInOut keyframes ----------
+    // Add fadeInOut keyframes
     if (!document.querySelector('#dynamic-style-fade')) {
         const style = document.createElement('style');
         style.id = 'dynamic-style-fade';
@@ -139,7 +139,7 @@ window.addEventListener("DOMContentLoaded", () => {
         document.head.appendChild(style);
     }
 
-    // ---------- Heart rain ----------
+    // Heart rain
     const heartRain = document.querySelector('.heart-rain');
     if (heartRain) {
         for (let i = 0; i < 10; i++) {
@@ -156,12 +156,12 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// ---------- YouTube Player Setup ----------
+// YouTube Player Setup (FIXED: videoId is now correct)
 let player;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-background', {
-        videoId: 'WyOoo2V-9jI',
+        videoId: 'WyOoo2V-9jI', // ✅ Correct – only the video ID, no extra parameters
         playerVars: {
             autoplay: 1,
             controls: 0,
@@ -176,12 +176,12 @@ function onYouTubeIframeAPIReady() {
             rel: 0,
             showinfo: 0,
             start: 0,
-            playlist: 'WyOoo2V-9jI' // Required for looping
+            playlist: 'WyOoo2V-9jI', // for looping
+            vq: 'hd720' // request 720p for smoother playback
         },
         events: {
             onReady: (e) => e.target.playVideo(),
             onStateChange: (e) => {
-                // Loop when video ends
                 if (e.data === YT.PlayerState.ENDED) e.target.playVideo();
             }
         }

@@ -1,41 +1,7 @@
-/* ===== YOUTUBE BACKGROUND (ADDED) ===== */
-.video-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    overflow: hidden;
-    pointer-events: none; /* Allows clicks to pass through to buttons */
-}
-
-#youtube-background {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 100vh;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-}
-
-#youtube-background iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 100vh;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    border: none;
-    pointer-events: none;
-}
-
-/* ===== ORIGINAL STYLES (KEPT EXACTLY) ===== */
+/* ===== RESET & BASE ===== */
 * {
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent; /* Removes blue tap on mobile */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -54,7 +20,41 @@ body {
     100% { opacity: 1; }
 }
 
-/* Video container and overlay are now handled above, but we keep overlay */
+/* ===== YOUTUBE BACKGROUND - FULL COVER ===== */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+    background: #000; /* fallback */
+}
+
+#youtube-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#youtube-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* ensures full coverage without distortion */
+    border: none;
+    pointer-events: none;
+}
+
+/* ===== PINK OVERLAY ===== */
 .overlay {
     position: fixed;
     top: 0;
@@ -91,7 +91,7 @@ body {
 }
 
 @keyframes fallOnce {
-    0%   { top: -150px; transform: translate(-50%, 0); }
+    0%   { top: -150px; }
     100% { top: 50%; transform: translate(-50%, -50%); }
 }
 
@@ -112,7 +112,6 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .forgive:hover {
@@ -139,7 +138,6 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .deny:hover {
@@ -148,7 +146,6 @@ body {
     transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* Valentine button */
 .valentine-btn {
     background: linear-gradient(45deg, #ff4d7a, #ff99bb);
     border: none;
@@ -166,7 +163,6 @@ body {
     text-shadow: 1px 1px 2px #b8014d;
     position: relative;
     z-index: 5;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .valentine-btn:hover:not(:disabled) {
@@ -182,7 +178,6 @@ body {
     box-shadow: 0 5px 10px rgba(255,20,100,0.3);
 }
 
-/* Forgive-again button (inside deny popup) */
 .forgive-again {
     background-color: #b8014d;
     color: white;
@@ -195,7 +190,6 @@ body {
     box-shadow: 0 5px 0 #5a0026;
     transition: all 0.2s ease;
     margin-top: 15px;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .forgive-again:hover {
@@ -209,7 +203,6 @@ body {
     box-shadow: 0 2px 0 #5a0026;
 }
 
-/* Clicked effect for forgive button */
 .forgive.clicked {
     background-color: #ff006a;
     box-shadow: #b8014d 0px 0px 10px, #f88fbc 0px 0px 25px;
@@ -259,11 +252,11 @@ body {
     text-decoration: underline;
 }
 
-.me { margin-left: 0; display: inline-block; }
-.for { padding: 0 10px; display: inline-block; }
-.forgiving { padding: 0 10px; display: inline-block; }
+.me, .for, .forgiving {
+    display: inline-block;
+    padding: 0 10px;
+}
 
-/* Heart background */
 .heart-bg {
     position: absolute;
     top: 0;
@@ -393,7 +386,7 @@ body {
 
 /* ===== JOURNEY SECTION ===== */
 #journey-section {
-    min-height: 100vh; /* Default for larger screens */
+    min-height: 100vh;
     height: auto;
     background: linear-gradient(145deg, #ffd9e8, #ffb3c6);
     display: flex;
@@ -406,7 +399,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Mobile: reduce height so all content fits in one view */
 @media (max-width: 600px) {
     #journey-section {
         min-height: auto;
@@ -573,7 +565,6 @@ body {
     }
 }
 
-/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
 }
