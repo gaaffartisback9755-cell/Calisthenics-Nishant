@@ -20,17 +20,17 @@ body {
     100% { opacity: 1; }
 }
 
-/* ===== YOUTUBE BACKGROUND - FULL COVER ===== */
+/* ===== YOUTUBE BACKGROUND - FULL COVER (DESKTOP & MOBILE) ===== */
 .video-container {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: -2;
     overflow: hidden;
     pointer-events: none;
-    background: #000; /* fallback */
+    background: #000;
 }
 
 #youtube-background {
@@ -49,7 +49,7 @@ body {
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%);
-    object-fit: cover; /* ensures full coverage without distortion */
+    object-fit: cover; /* Ensures video fills entire container without distortion */
     border: none;
     pointer-events: none;
 }
