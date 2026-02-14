@@ -17,9 +17,11 @@
 </head>
 <body>
 
-    <!-- Background Video (YouTube) -->
+    <!-- Background Video (Local MP4) -->
     <div class="video-container">
-        <div id="youtube-background"></div>
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="video.mp4" type="video/mp4">
+        </video>
     </div>
     <div class="overlay"></div>
 
@@ -78,8 +80,6 @@
         </div>
     </div>
 
-    <!-- YouTube IFrame API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="nishant.js"></script>
 </body>
 </html>

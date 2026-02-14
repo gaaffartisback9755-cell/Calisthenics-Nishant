@@ -1,5 +1,12 @@
 window.addEventListener("DOMContentLoaded", () => {
+    const bgVideo = document.getElementById("bg-video");
     const bgMusic = document.getElementById("bgMusic");
+
+    // Autoplay video (with fallback)
+    bgVideo.play().catch(() => {
+        // If autoplay fails, play on first user interaction
+        document.body.addEventListener("click", () => bgVideo.play(), { once: true });
+    });
 
     // Autoplay music (with fallback)
     bgMusic.play().catch(() => {
@@ -155,35 +162,3 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
-
-// YouTube Player Setup (FIXED videoId and branding removal)
-let player;
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('youtube-background', {
-        videoId: 'WyOoo2V-9jI', // ✅ Only the video ID
-        playerVars: {
-            autoplay: 1,
-            controls: 0,           // No controls
-            disablekb: 1,           // Disable keyboard
-            enablejsapi: 1,
-            fs: 0,                  // No fullscreen button
-            iv_load_policy: 3,      // No video annotations
-            loop: 1,
-            modestbranding: 1,       // Minimal YouTube logo
-            mute: 1,
-            playsinline: 1,
-            rel: 0,                  // No related videos
-            showinfo: 0,             // No video title (deprecated but kept)
-            start: 0,
-            playlist: 'WyOoo2V-9jI', // Required for looping
-            vq: 'hd720'               // 720p for smoother playback
-        },
-        events: {
-            onReady: (e) => e.target.playVideo(),
-            onStateChange: (e) => {
-                if (e.data === YT.PlayerState.ENDED) e.target.playVideo();
-            }
-        }
-    });
-}
